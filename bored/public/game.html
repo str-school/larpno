@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UNO Game</title>
+
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+    <main id="game">
+<p id="PW">player won</p>
+
+        <p id="YT">your turn</p>
+
+        <!-- =========================
+             PLAYERS
+        ========================== -->
+<div id="player1" class="player-spot"></div>
+<div id="player2" class="player-spot"></div>
+<div id="player3" class="player-spot"></div>
+        <!-- =========================
+             CENTER OF TABLE
+        ========================== -->
+<div id="unobtn">UNO</div>
+        <section id="center">
+
+
+
+
+            <!-- Draw pile -->
+            <div id="deck">
+                <img
+                    src="cards/uno_card_back_by_wackosamurai_d9gnihf-fullview.png"
+                    alt="UNO draw pile"
+                >
+            </div>
+
+            <!-- Played card -->
+            <div id="cardplayed">
+                <img
+                    src="images (1).png"
+                    alt="Played UNO card"
+                >
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             HAND NAVIGATION
+        ========================== -->
+
+        <button id="lt" type="button" aria-label="Previous cards">
+            &lt;
+        </button>
+
+        <button id="gt" type="button" aria-label="Next cards">
+            &gt;
+        </button>
+
+
+        <!-- =========================
+             LOCAL PLAYER
+        ========================== -->
+
+        <section id="local-player">
+
+            <div id="local-player-info">
+                <span id="local-player-name">You</span>
+                <span id="local-player-card-count">7 cards</span>
+            </div>
+
+            <!-- JavaScript puts cards here -->
+            <div id="cards"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Socket.IO -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+    <script>
+        const socket = io();
+    </script>
+
+    <!-- Your game code -->
+    <script src="game.js"></script>
+
+</body>
+
+</html>

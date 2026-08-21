@@ -150,7 +150,7 @@ body {
     transform: translateY(-50%);
 }
 
-.player-spot.turn {
+.player.turn {
     border-color: #ffd700;
     box-shadow: 0 0 10px #ffd700, 0 0 30px rgba(255, 215, 0, 0.7);
     animation: turnGlow 1s infinite alternate;
@@ -427,16 +427,9 @@ body {
         margin-left: 0;
     }
 
-    /* Make hovered/tapped card pop above adjacent cards */
-    .card:hover,
-    .card:active {
-        transform: translateY(-28px) scale(1.15);
-        z-index: 100;
-    }
 
-.card:hover {
-        transform: translateY(-12px) scale(1.08);
-    }
+
+
 
     /* Smaller UI buttons */
     #unobtn {
@@ -452,13 +445,19 @@ body {
         padding: 5px 12px;
     }
 
-/* Reposition arrow navigation out of the way of larger cards */
-    #lt, #gt {
-        bottom: 25px;
-        font-size: 38px;
-        z-index: 200;
+    #lt,
+    #gt {
+        bottom: 10px;
+        width: 30px;
+        height: 50px;
+        font-size: 36px;
     }
 
-    #lt { left: 4px; }
-    #gt { right: 4px; }
+    #lt {
+        left: 5px;
+    }
+
+    #gt {
+        right: 5px;
+    }
 }

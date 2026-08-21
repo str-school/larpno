@@ -163,10 +163,10 @@ socket.on("UpdatePlayers", (players) => {
             playerSpots[i].appendChild(playerDiv);
         });
 });
-
+let ismobile = window.innerWidth < 700
 function RenderPage() {
     cardinfo.innerHTML = curdeck.length + " Cards";
-    let ismobile = window.innerWidth < 700
+
     let start = page * 7;
     let end = Math.min(start + 7, curdeck.length);
     if (ismobile) {
@@ -196,10 +196,19 @@ let YT = document.getElementById("YT");
 YT.style.visibility = "hidden";
 
 gt.addEventListener("click", () => {
-    if ((page + 1) * 7 < curdeck.length) {
-        page++;
-        RenderPage()
+    if (ismobile) {
+        if ((page + 1) * 5 < curdeck.length) {
+            page++;
+            RenderPage()
+        }
     }
+    else {
+        if ((page + 1) * 7 < curdeck.length) {
+            page++;
+            RenderPage()
+        }
+    }
+
 
 });
 

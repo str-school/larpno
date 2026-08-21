@@ -44,13 +44,10 @@ body {
 #game {
     position: relative;
     width: 100%;
+    /* 100dvh adjusts dynamically when mobile browser toolbars open/close */
     height: 100vh;
+    height: 100dvh; 
     overflow: hidden;
-
-    background:
-        radial-gradient(ellipse at center,
-            rgba(255, 255, 255, 0.08),
-            transparent 55%);
 }
 
 /* =========================================
@@ -247,7 +244,8 @@ body {
 #local-player {
     position: absolute;
     left: 0;
-    bottom: 0;
+    /* Elevates the entire hand above mobile bottom bars & home indicators */
+    bottom: max(20px, env(safe-area-inset-bottom)); 
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -397,17 +395,21 @@ body {
         gap: 15px;
     }
 
-    #local-player-info {
-        margin-bottom: 20px;
+#local-player-info {
+        margin-bottom: 8px;
         padding: 4px 10px;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     /* Dynamic flex hand with smooth touch scrolling */
 #cards {
-        width: 100vw;
-        height: 120px;
-        gap: 8px; /* Tighter gap on small screens */
+        width: 95vw;
+        height: 140px; /* Taller area for readable cards */
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        /* Slight negative gap so 7 enlarged cards fit neatly on narrow screens */
+        gap: -10px; 
     }
 
     #cards::-webkit-scrollbar {
@@ -415,11 +417,21 @@ body {
     }
 
 .card {
-        width: clamp(38px, 10vw, 55px);
+        /* Bumped minimum width from 40px to 54px for visibility */
+        width: clamp(54px, 13.5vw, 75px); 
+        flex-shrink: 0;
+        margin-left: -8px; /* Adds clean overlapping */
     }
 
-    .card:first-child {
+.card:first-child {
         margin-left: 0;
+    }
+
+    /* Make hovered/tapped card pop above adjacent cards */
+    .card:hover,
+    .card:active {
+        transform: translateY(-28px) scale(1.15);
+        z-index: 100;
     }
 
 .card:hover {
@@ -440,19 +452,13 @@ body {
         padding: 5px 12px;
     }
 
-    #lt,
-    #gt {
-        bottom: 10px;
-        width: 30px;
-        height: 50px;
-        font-size: 36px;
+/* Reposition arrow navigation out of the way of larger cards */
+    #lt, #gt {
+        bottom: 25px;
+        font-size: 38px;
+        z-index: 200;
     }
 
-    #lt {
-        left: 5px;
-    }
-
-    #gt {
-        right: 5px;
-    }
+    #lt { left: 4px; }
+    #gt { right: 4px; }
 }

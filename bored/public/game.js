@@ -156,10 +156,13 @@ socket.on("UpdatePlayers", (players) => {
 
 function RenderPage() {
     cardinfo.innerHTML = curdeck.length + " Cards";
-
+    let ismobile = window.innerWidth < 700
     let start = page * 7;
     let end = Math.min(start + 7, curdeck.length);
-
+    if (ismobile) {
+        start = page * 5
+        end = Math.min(start + 5, curdeck.length);
+    }
     // Hide all cards and clear hardcoded inline visibility flags
     curdeck.forEach((card) => {
         card.style.display = "none";

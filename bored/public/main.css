@@ -460,4 +460,20 @@ body {
     #gt {
         right: 5px;
     }
+
+        .card:hover {
+        transform: none;
+        filter: none;
+    }
+
+    #deck:hover {
+        transform: none;
+        filter: none;
+    }
+
+    #lt:hover,
+    #gt:hover {
+        transform: none;
+        color: white;
+    }
 }

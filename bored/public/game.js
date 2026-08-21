@@ -35,7 +35,7 @@ let cards = {
     30: { name: "Wild Draw4", special: "wilddraw4", img: "cards/UNO-CARD-WILD-DRAW4.png" }
 }
 if (sessionStorage.getItem("inGame") == "true") {
-     sessionStorage.setItem("inGame", "false");
+    sessionStorage.setItem("inGame", "false");
     window.location.href = "index.html";
 } else {
     sessionStorage.setItem("inGame", "true");
@@ -100,13 +100,13 @@ function moveUNOButton() {
     unobtn.style.top = `${randomY}px`;
 }
 socket.on("UNOQTE", (data) => {
-if(data.playerId == socket.id){
-    return;
-}
+    if (data.playerId == socket.id) {
+        return;
+    }
     unobtn.style.visibility = "visible";
     console.log(data.playerId)
     moveUNOButton()
-unoplayer = data.playerId
+    unoplayer = data.playerId
     setTimeout(() => {
         unobtn.style.visibility = "hidden";
     }, data.time);
@@ -155,35 +155,27 @@ socket.on("UpdatePlayers", (players) => {
 });
 
 function RenderPage() {
-
-    cardinfo.innerHTML = curdeck.length + " Cards"
-    console.log(pagecardcnt)
-    offset = 200;
+    cardinfo.innerHTML = curdeck.length + " Cards";
 
     let start = page * 7;
     let end = Math.min(start + 7, curdeck.length);
 
-    for (let i = 0; i < curdeck.length; i++) {
-        curdeck[i].style.visibility = "hidden";
-    }
-    if (page == 0) {
+    // Hide all cards and clear hardcoded inline visibility flags
+    curdeck.forEach((card) => {
+        card.style.display = "none";
+        card.style.visibility = "visible"; // Clears invisible state on page 2+
+    });
 
-        for (let i = 0; i < pagecardcnt; i++) {
-            offset += 200
-            curdeck[i].style.visibility = "visible";
-            curdeck[i].style.transform = `translate(${offset}px)`;
+    // Display only cards belonging to current page
+    for (let i = start; i < end; i++) {
+        if (curdeck[i]) {
+            curdeck[i].style.display = "block";
         }
     }
-    else {
-        for (let i = start; i < end; i++) {
-            offset += 200
-            curdeck[i].style.visibility = "visible";
-            curdeck[i].style.transform = `translate(${offset}px)`;
-        }
-    }
-
 }
 
+// Recalculate card positioning when screen resizes or rotates
+window.addEventListener("resize", RenderPage);
 
 
 let YT = document.getElementById("YT");
@@ -231,59 +223,31 @@ socket.on("UpdateTurn", (player) => {
 function drawcards(amt) {
     try {
         for (let i = 0; i < amt; i++) {
-            if (cardcnt == 7) {
-                offset = 200;
-                cardcnt = 0;
-            }
+            socket.emit("gotcard", socket.id);
 
-            socket.emit("gotcard", socket.id)
+            let randomcardKey = Math.floor(Math.random() * Object.keys(cards).length) + 1;
+            let carddata = cards[randomcardKey];
 
-            randomcard = Math.floor(Math.random() * Object.keys(cards).length) + 1;
-            randomcard = cards[randomcard];
-
-            const carddata = randomcard;
             let card = document.createElement("div");
             card.setAttribute("class", "card");
-            card.setAttribute("id", randomcard.img)
-            cardcnt++;
-            console.log(cardcnt)
+            card.setAttribute("id", carddata.img);
+
             let cardimg = document.createElement("img");
-            cardimg.setAttribute("src", randomcard.img);
+            cardimg.setAttribute("src", carddata.img);
             card.append(cardimg);
+
             cardselement.append(card);
             curdeck.push(card);
-            console.log(curdeck);
-
-            if (pagecardcnt != 7) {
-                card.style.visibility = "visible"
-                pagecardcnt++;
-                RenderPage()
-            }
-            else {
-                card.style.visibility = "hidden"
-            }
-            RenderPage()
 
             card.addEventListener("click", () => {
-
-                console.log("hi");
-
-                if (socket.id !== playerturn) {
-                    console.log("Not your turn!");
-                    return;
-                }
-
-                playcard(
-                    carddata,
-                    card
-                );
+                if (socket.id !== playerturn) return;
+                playcard(carddata, card);
             });
         }
+        RenderPage();
+    } catch (err) {
+        console.log("Error drawing cards:", err);
     }
-    catch {
-        console.log("your stupid")
-    }
-
 }
 socket.on("drawCards", (amt) => {
     drawcards(amt)
@@ -408,7 +372,7 @@ function playcard(card, element) {
 
             let cardthatgotplayed = cardplaceholder.children[0];
 
-             cardthatgotplayed.setAttribute("src", "cards/UNO-CARD-BASE-" + newcolor + ".png");
+            cardthatgotplayed.setAttribute("src", "cards/UNO-CARD-BASE-" + newcolor + ".png");
 
             element.remove();
             curdeck.splice(rmeovecardnum, 1)

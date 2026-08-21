@@ -28,14 +28,11 @@ body {
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
 
-    /* No table background image */
     background:
-        radial-gradient(
-            circle at center,
+        radial-gradient(circle at center,
             #159447 0%,
             #0d7738 45%,
-            #07582b 100%
-        );
+            #07582b 100%);
 
     color: white;
 }
@@ -46,19 +43,14 @@ body {
 
 #game {
     position: relative;
-
     width: 100%;
     height: 100vh;
-
     overflow: hidden;
 
-    /* subtle top-down table texture */
     background:
-        radial-gradient(
-            ellipse at center,
-            rgba(255,255,255,0.08),
-            transparent 55%
-        );
+        radial-gradient(ellipse at center,
+            rgba(255, 255, 255, 0.08),
+            transparent 55%);
 }
 
 /* =========================================
@@ -67,13 +59,10 @@ body {
 
 #game::before {
     content: "";
-
     position: absolute;
     inset: 18px;
-
-    border: 3px solid rgba(255,255,255,0.16);
+    border: 3px solid rgba(255, 255, 255, 0.16);
     border-radius: 40px;
-
     pointer-events: none;
 }
 
@@ -83,46 +72,39 @@ body {
 
 #center {
     position: absolute;
-
     top: 50%;
     left: 50%;
-
     transform: translate(-50%, -50%);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     gap: 45px;
-
     z-index: 5;
 }
 
 /* =========================================
-   DECK
+   DECK & PLAYED CARD
 ========================================= */
 
-#deck {
+#deck,
+#cardplayed {
     width: var(--small-card-width);
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        filter 0.2s ease;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-#deck img {
-    display: block;
+#deck {
+    cursor: pointer;
+}
 
+#deck img,
+#cardplayed img {
+    display: block;
     width: 100%;
     height: auto;
-
     border-radius: var(--card-radius);
-
     box-shadow:
-        0 12px 20px rgba(0,0,0,0.35),
-        0 3px 5px rgba(0,0,0,0.3);
+        0 12px 20px rgba(0, 0, 0, 0.35),
+        0 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 #deck:hover {
@@ -131,300 +113,157 @@ body {
 }
 
 /* =========================================
-   PLAYED CARD
-========================================= */
-
-#cardplayed {
-    width: var(--small-card-width);
-
-    transition:
-        transform 0.2s ease,
-        filter 0.2s ease;
-}
-
-#cardplayed img {
-    display: block;
-
-    width: 100%;
-    height: auto;
-
-    border-radius: var(--card-radius);
-
-    box-shadow:
-        0 12px 20px rgba(0,0,0,0.4),
-        0 3px 5px rgba(0,0,0,0.3);
-}
-
-/* =========================================
    PLAYERS
 ========================================= */
 
 .player-spot {
     position: absolute;
-
     width: 165px;
     min-height: 75px;
-
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
-
     padding: 10px 15px;
-
-    background: rgba(0,0,0,0.45);
-
-    border: 2px solid rgba(255,255,255,0.2);
+    background: rgba(0, 0, 0, 0.45);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 18px;
-
     color: white;
-
     backdrop-filter: blur(8px);
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,0.25);
-
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     z-index: 20;
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
-
-/* =========================================
-   TOP PLAYER
-========================================= */
 
 #player1 {
     top: 25px;
     left: 50%;
-
     transform: translateX(-50%);
 }
-
-/* =========================================
-   LEFT PLAYER
-========================================= */
 
 #player2 {
     top: 50%;
     left: 25px;
-
     transform: translateY(-50%);
 }
-
-/* =========================================
-   RIGHT PLAYER
-========================================= */
 
 #player3 {
     top: 50%;
     right: 25px;
-
     transform: translateY(-50%);
 }
 
-/* =========================================
-   PLAYER TURN
-========================================= */
-
 .player.turn {
     border-color: #ffd700;
-
-    box-shadow:
-        0 0 10px #ffd700,
-        0 0 30px rgba(255,215,0,0.7);
-
+    box-shadow: 0 0 10px #ffd700, 0 0 30px rgba(255, 215, 0, 0.7);
     animation: turnGlow 1s infinite alternate;
 }
 
 @keyframes turnGlow {
     from {
-        box-shadow:
-            0 0 8px #ffd700,
-            0 0 15px rgba(255,215,0,0.4);
+        box-shadow: 0 0 8px #ffd700, 0 0 15px rgba(255, 215, 0, 0.4);
     }
 
     to {
-        box-shadow:
-            0 0 18px #ffd700,
-            0 0 40px rgba(255,215,0,0.8);
+        box-shadow: 0 0 18px #ffd700, 0 0 40px rgba(255, 215, 0, 0.8);
     }
 }
 
 /* =========================================
-   UNO BUTTON
+   UNO BUTTON & OVERLAYS
 ========================================= */
 
 #unobtn {
     position: fixed;
-
     left: 50%;
     top: 50%;
-
     transform: translate(-50%, -50%);
-
     width: 130px;
     height: 70px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 5px solid white;
     border-radius: 20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ff3838,
-            #c40000
-        );
-
+    background: linear-gradient(145deg, #ff3838, #c40000);
     color: white;
-
     font-size: 28px;
     font-weight: 900;
-
-    text-shadow:
-        2px 3px 0 #700000;
-
-    box-shadow:
-        0 7px 0 #700000,
-        0 12px 25px rgba(0,0,0,0.45);
-
+    text-shadow: 2px 3px 0 #700000;
+    box-shadow: 0 7px 0 #700000, 0 12px 25px rgba(0, 0, 0, 0.45);
     cursor: pointer;
-
     z-index: 9999;
-
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 #unobtn:hover {
-    transform:
-        translate(-50%, -50%)
-        scale(1.08);
-
-    box-shadow:
-        0 8px 0 #700000,
-        0 15px 30px rgba(0,0,0,0.5);
+    transform: translate(-50%, -50%) scale(1.08);
+    box-shadow: 0 8px 0 #700000, 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
 #unobtn:active {
-    transform:
-        translate(-50%, -45%)
-        scale(0.95);
-
-    box-shadow:
-        0 3px 0 #700000,
-        0 6px 10px rgba(0,0,0,0.4);
+    transform: translate(-50%, -45%) scale(0.95);
+    box-shadow: 0 3px 0 #700000, 0 6px 10px rgba(0, 0, 0, 0.4);
 }
-
-/* =========================================
-   WINNER SCREEN
-========================================= */
 
 #PW {
     visibility: hidden;
-
     position: fixed;
     inset: 0;
-
     width: 100vw;
     height: 100vh;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     text-align: center;
-
-    background: rgba(0,0,0,0.8);
-
+    background: rgba(0, 0, 0, 0.8);
     font-size: clamp(40px, 8vw, 80px);
     font-weight: bold;
-
     color: white;
-
     z-index: 99999;
 }
 
-/* =========================================
-   YOUR TURN
-========================================= */
-
 #YT {
     position: absolute;
-
     top: 50%;
     left: 50%;
-
     transform: translate(-50%, 115px);
-
     padding: 10px 22px;
-
-    background: rgba(0,0,0,0.55);
-
+    background: rgba(0, 0, 0, 0.55);
     border: 2px solid #ffd700;
     border-radius: 12px;
-
     color: #ffd700;
-
     font-size: 24px;
     font-weight: bold;
-
     text-align: center;
-
-    box-shadow:
-        0 5px 15px rgba(0,0,0,0.3);
-
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     z-index: 50;
 }
 
 /* =========================================
-   LOCAL PLAYER
+   LOCAL PLAYER HAND
 ========================================= */
 
 #local-player {
     position: absolute;
-
     left: 0;
     bottom: 0;
-
     width: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-
     z-index: 10;
 }
 
-/* =========================================
-   LOCAL PLAYER INFO
-========================================= */
-
 #local-player-info {
     display: flex;
-
     gap: 15px;
-
     margin-bottom: 90px;
-
     padding: 8px 18px;
-
     color: white;
-
-    background: rgba(0,0,0,0.55);
-
-    border: 1px solid rgba(255,255,255,0.15);
-
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 12px 12px 0 0;
-
     backdrop-filter: blur(5px);
 }
 
@@ -436,18 +275,15 @@ body {
     opacity: 0.8;
 }
 
-/* =========================================
-   CARDS
-========================================= */
-
 #cards {
     position: relative;
-
-    width: min(90vw, 1100px);
-
-    height: 210px;
-
-    padding-bottom: 10px;
+    width: min(90vw, 1000px);
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center; /* Groups cards together in the middle */
+    align-items: flex-end;
+    gap: 16px; /* Fixed, clean distance between cards */
 }
 
 /* =========================================
@@ -455,58 +291,32 @@ body {
 ========================================= */
 
 .card {
-    position: absolute;
-
-    left: -500px;
-
-    bottom: 20px;
-
+    position: relative;
+    /* Removes absolute positioning dependence */
+    left: auto;
+    bottom: 0;
     width: var(--card-width);
-
-    z-index: 10;
-
+    flex-shrink: 0;
     cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        filter 0.2s ease;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .card img {
     display: block;
-
     width: 100%;
     height: auto;
-
     aspect-ratio: 2 / 3;
-
     object-fit: cover;
-
     border-radius: var(--card-radius);
-
     box-shadow:
-        0 8px 15px rgba(0,0,0,0.35),
-        0 2px 5px rgba(0,0,0,0.25);
-
+        0 8px 15px rgba(0, 0, 0, 0.35),
+        0 2px 5px rgba(0, 0, 0, 0.25);
     user-select: none;
 }
 
-/* =========================================
-   CARD HOVER
-========================================= */
-
 .card:hover {
-    transform:
-        translateY(-35px)
-        scale(1.05);
-
+    transform: translateY(-25px) scale(1.08);
     z-index: 100;
-}
-
-.card:hover img {
-    box-shadow:
-        0 18px 30px rgba(0,0,0,0.45),
-        0 5px 10px rgba(0,0,0,0.3);
 }
 
 /* =========================================
@@ -516,33 +326,19 @@ body {
 #lt,
 #gt {
     position: absolute;
-
     bottom: 45px;
-
     width: 70px;
     height: 100px;
-
     border: none;
-
     background: transparent;
-
     color: white;
-
     font-size: 80px;
     font-weight: bold;
-
     cursor: pointer;
-
     z-index: 200;
-
     user-select: none;
-
-    text-shadow:
-        0 4px 8px rgba(0,0,0,0.7);
-
-    transition:
-        transform 0.2s ease,
-        color 0.2s ease;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 #lt {
@@ -556,97 +352,107 @@ body {
 #lt:hover,
 #gt:hover {
     transform: scale(1.15);
-
     color: #ffd700;
 }
 
 /* =========================================
-   CURRENT TURN
-========================================= */
-
-.current-turn {
-    border: 3px solid gold;
-
-    box-shadow:
-        0 0 15px gold,
-        0 5px 15px rgba(0,0,0,0.4);
-
-    transform: scale(1.08);
-}
-
-.turn-text {
-    color: gold;
-
-    font-weight: bold;
-
-    font-size: 12px;
-}
-
-/* =========================================
-   MOBILE
+   MOBILE RESPONSIVE (MAX-WIDTH: 700PX)
 ========================================= */
 
 @media (max-width: 700px) {
 
     :root {
-        --card-width: 85px;
-        --small-card-width: 75px;
+        --card-width: 50px;
+        --small-card-width: 58px;
+        --card-radius: 6px;
     }
 
     #game::before {
         inset: 8px;
-        border-radius: 25px;
+        border-radius: 20px;
     }
 
-    #center {
-        gap: 20px;
-    }
-
+    /* Player spots scale down so left/right players don't squish center deck */
     .player-spot {
-        width: 110px;
-        min-height: 55px;
-        padding: 6px;
-    }
-
-    #player2 {
-        left: 5px;
-    }
-
-    #player3 {
-        right: 5px;
+        width: 100px;
+        min-height: 48px;
+        padding: 4px 6px;
+        font-size: 11px;
+        border-radius: 10px;
     }
 
     #player1 {
-        top: 10px;
+        top: 12px;
     }
 
-    #cards {
-        width: 90vw;
-        height: 150px;
+    #player2 {
+        left: 8px;
+    }
+
+    #player3 {
+        right: 8px;
+    }
+
+    #center {
+        gap: 15px;
+    }
+
+    #local-player-info {
+        margin-bottom: 20px;
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+
+    /* Dynamic flex hand with smooth touch scrolling */
+#cards {
+        width: 100vw;
+        height: 120px;
+        gap: 8px; /* Tighter gap on small screens */
+    }
+
+    #cards::-webkit-scrollbar {
+        display: none;
+    }
+
+.card {
+        width: clamp(38px, 10vw, 55px);
+    }
+
+    .card:first-child {
+        margin-left: 0;
+    }
+
+.card:hover {
+        transform: translateY(-12px) scale(1.08);
+    }
+
+    /* Smaller UI buttons */
+    #unobtn {
+        width: 90px;
+        height: 48px;
+        font-size: 18px;
+        border-width: 3px;
     }
 
     #YT {
-        font-size: 18px;
-        transform: translate(-50%, 90px);
-    }
-
-    #unobtn {
-        width: 100px;
-        height: 55px;
-        font-size: 21px;
+        transform: translate(-50%, 70px);
+        font-size: 15px;
+        padding: 5px 12px;
     }
 
     #lt,
     #gt {
-        bottom: 30px;
-        font-size: 55px;
+        bottom: 10px;
+        width: 30px;
+        height: 50px;
+        font-size: 36px;
     }
 
     #lt {
-        left: 0;
+        left: 5px;
     }
 
     #gt {
-        right: 0;
+        right: 5px;
     }
 }

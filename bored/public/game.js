@@ -151,8 +151,9 @@ socket.on("UpdatePlayers", (players) => {
 
             // Glow if it's this player's turn
             if (player.turn) {
-                playerDiv.classList.add("turn");
+                playerSpots[i].classList.add("turn");
             }
+
 
             playerDiv.innerHTML = `
                 <p>${player.name}</p>

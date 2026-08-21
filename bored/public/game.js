@@ -330,7 +330,7 @@ socket.on("PlayedCard", (card, color) => {
         lastplayedcard = card.name
     }
     else {
-        cardthatgotplayed.setAttribute("src", "cards/UNO-CARD-BASE-" + color + ".png");
+        cardthatgotplayed.setAttribute("src", "cards/UNO-CARD-BASE-" + color.toUpperCase() + ".png");
         lastplayedcard = color
     }
 
@@ -375,7 +375,7 @@ function playcard(card, element) {
 
             let cardthatgotplayed = cardplaceholder.children[0];
 
-            cardthatgotplayed.setAttribute("src", "cards/UNO-CARD-BASE-" + newcolor + ".png");
+            cardthatgotplayed.setAttribute("src", "cards/UNO-CARD-BASE-" + newcolor.toUpperCase() + ".png");
 
             element.remove();
             curdeck.splice(rmeovecardnum, 1)

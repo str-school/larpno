@@ -50,6 +50,9 @@ io.on("connection", (socket) => {
             getPlayersInRoom(code)
         );
     });
+    socket.on("UNOsafe", (player)=>{
+        socket.emit("UNOsafe", player);
+    });
     socket.on("gotcard", (id) => {
 
         const player = players[id];

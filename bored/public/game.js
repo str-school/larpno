@@ -100,9 +100,7 @@ function moveUNOButton() {
     unobtn.style.top = `${randomY}px`;
 }
 socket.on("UNOQTE", (data) => {
-    if (data.playerId == socket.id) {
-        return;
-    }
+
     unobtn.style.visibility = "visible";
     console.log(data.playerId)
     moveUNOButton()
@@ -113,11 +111,22 @@ socket.on("UNOQTE", (data) => {
 
 });
 unobtn.addEventListener("click", () => {
+    if (unoplayer == socket.id) {
+        socket.emit("UNOsafe", unoplayer);
+        console.log(unoplayer)
+        unobtn.style.visibility = "hidden";
+    }
+    else {
+        socket.emit("UNO", unoplayer);
+        console.log(unoplayer)
+        unobtn.style.visibility = "hidden";
+    }
 
-    socket.emit("UNO", unoplayer);
-    console.log(unoplayer)
+
+});
+
+socket.on("UNOsafe", (player) => {
     unobtn.style.visibility = "hidden";
-
 });
 socket.on("UpdatePlayers", (players) => {
     let playerSpots = [

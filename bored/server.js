@@ -124,7 +124,7 @@ io.on("connection", (socket) => {
         if (!room || room.startingCard === null) {
             return;
         }
-console.log(room.startingCard)
+        console.log(room.startingCard)
         io.to(socket.id).emit(
             "PlayedCard",
             room.startingCard,
@@ -333,5 +333,5 @@ console.log(room.startingCard)
 });
 
 server.listen(3000, () => {
-    console.log("listening on *:3000");
+    console.log("listening on www.larpno.onrender.com");
 });

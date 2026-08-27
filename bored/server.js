@@ -333,5 +333,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(3000, () => {
-    console.log("listening on www.larpno.onrender.com");
+    console.log("listening on https://larpno.onrender.com/");
 });

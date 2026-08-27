@@ -1,39 +1,74 @@
 let cards = {
+    // =========================
+    // RED NUMBERS
+    // =========================
     1: { name: "1 Red", special: "no", img: "cards/UNO-CARD-1-RED.png" },
     2: { name: "2 Red", special: "no", img: "cards/UNO-CARD-2-RED.png" },
     3: { name: "3 Red", special: "no", img: "cards/UNO-CARD-3-RED.png" },
     4: { name: "4 Red", special: "no", img: "cards/UNO-CARD-4-RED.png" },
     5: { name: "5 Red", special: "no", img: "cards/UNO-CARD-5-RED.png" },
 
+    // =========================
+    // YELLOW NUMBERS
+    // =========================
     6: { name: "1 Yellow", special: "no", img: "cards/UNO-CARD-1-YELLOW.png" },
     7: { name: "2 Yellow", special: "no", img: "cards/UNO-CARD-2-YELLOW.png" },
     8: { name: "3 Yellow", special: "no", img: "cards/UNO-CARD-3-YELLOW.png" },
     9: { name: "4 Yellow", special: "no", img: "cards/UNO-CARD-4-YELLOW.png" },
     10: { name: "5 Yellow", special: "no", img: "cards/UNO-CARD-5-YELLOW.png" },
 
+    // =========================
+    // GREEN NUMBERS
+    // =========================
     11: { name: "1 Green", special: "no", img: "cards/UNO-CARD-1-GREEN.png" },
     12: { name: "2 Green", special: "no", img: "cards/UNO-CARD-2-GREEN.png" },
     13: { name: "3 Green", special: "no", img: "cards/UNO-CARD-3-GREEN.png" },
     14: { name: "4 Green", special: "no", img: "cards/UNO-CARD-4-GREEN.png" },
     15: { name: "5 Green", special: "no", img: "cards/UNO-CARD-5-GREEN.png" },
 
+    // =========================
+    // BLUE NUMBERS
+    // =========================
     16: { name: "1 Blue", special: "no", img: "cards/UNO-CARD-1-BLUE.png" },
     17: { name: "2 Blue", special: "no", img: "cards/UNO-CARD-2-BLUE.png" },
     18: { name: "3 Blue", special: "no", img: "cards/UNO-CARD-3-BLUE.png" },
     19: { name: "4 Blue", special: "no", img: "cards/UNO-CARD-4-BLUE.png" },
     20: { name: "5 Blue", special: "no", img: "cards/UNO-CARD-5-BLUE.png" },
 
+    // =========================
+    // RED SPECIALS
+    // =========================
     21: { name: "Skip Red", special: "skip", img: "cards/UNO-CARD-SKIP-RED.png" },
     22: { name: "Reverse Red", special: "reverse", img: "cards/UNO-CARD-REVERSE-RED.png" },
     23: { name: "Draw2 Red", special: "draw2", img: "cards/UNO-CARD-DRAW2-RED.png" },
+
+    // =========================
+    // YELLOW SPECIALS
+    // =========================
     24: { name: "Skip Yellow", special: "skip", img: "cards/UNO-CARD-SKIP-YELLOW.png" },
     25: { name: "Reverse Yellow", special: "reverse", img: "cards/UNO-CARD-REVERSE-YELLOW.png" },
+    26: { name: "Draw2 Yellow", special: "draw2", img: "cards/UNO-CARD-DRAW2-YELLOW.png" },
 
-    26: { name: "Reverse Blue", special: "reverse", img: "cards/UNO-CARD-REVERSE-BLUE.png" },
-    27: { name: "Draw2 Blue", special: "draw2", img: "cards/UNO-CARD-DRAW2-BLUE.png" },
-    28: { name: "Wild", special: "wild", img: "cards/UNO-CARD-WILD.png" },
-    30: { name: "Wild Draw4", special: "wilddraw4", img: "cards/UNO-CARD-WILD-DRAW4.png" }
-}
+    // =========================
+    // GREEN SPECIALS
+    // =========================
+    27: { name: "Skip Green", special: "skip", img: "cards/UNO-CARD-SKIP-GREEN.png" },
+    28: { name: "Reverse Green", special: "reverse", img: "cards/UNO-CARD-REVERSE-GREEN.png" },
+    29: { name: "Draw2 Green", special: "draw2", img: "cards/UNO-CARD-DRAW2-GREEN.png" },
+
+    // =========================
+    // BLUE SPECIALS
+    // =========================
+    30: { name: "Skip Blue", special: "skip", img: "cards/UNO-CARD-SKIP-BLUE.png" },
+    31: { name: "Reverse Blue", special: "reverse", img: "cards/UNO-CARD-REVERSE-BLUE.png" },
+    32: { name: "Draw2 Blue", special: "draw2", img: "cards/UNO-CARD-DRAW2-BLUE.png" },
+
+    // =========================
+    // WILD CARDS
+    // =========================
+    33: { name: "Wild", special: "wild", img: "cards/UNO-CARD-WILD.png" },
+    34: { name: "Wild Draw4", special: "wilddraw4", img: "cards/UNO-CARD-WILD-DRAW4.png" }
+};
 if (sessionStorage.getItem("inGame") == "true") {
     sessionStorage.setItem("inGame", "false");
     window.location.href = "index.html";

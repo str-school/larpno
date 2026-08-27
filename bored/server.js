@@ -124,14 +124,14 @@ io.on("connection", (socket) => {
         if (!room || room.startingCard === null) {
             return;
         }
-
-        socket.emit(
+console.log(room.startingCard)
+        io.to(socket.id).emit(
             "PlayedCard",
             room.startingCard,
             "..."
         );
 
-        socket.emit(
+        io.to(socket.id).emit(
             "UpdatePlayers",
             getPlayersInRoom(roomCode)
         );

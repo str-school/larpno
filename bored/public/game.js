@@ -153,7 +153,7 @@ socket.on("UpdatePlayers", (players) => {
             if (player.turn) {
                 playerSpots[i].classList.add("turn");
             }
-
+            console.log(player.turn)
 
             playerDiv.innerHTML = `
                 <p>${player.name}</p>

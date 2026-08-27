@@ -150,7 +150,7 @@ body {
     transform: translateY(-50%);
 }
 
-.player.turn {
+.player-spot.turn {
     border-color: #ffd700;
     box-shadow: 0 0 10px #ffd700, 0 0 30px rgba(255, 215, 0, 0.7);
     animation: turnGlow 1s infinite alternate;

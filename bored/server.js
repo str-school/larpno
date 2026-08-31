@@ -25,7 +25,7 @@ function getPlayersInRoom(code) {
 io.on("connection", (socket) => {
 
     socket.on("JoinRoom", (name, code) => {
-        if(rooms[code].players.length >= 3){
+        if(rooms[code].PIR >= 3){
               io.to(socket.id).emit("ReturnToLobby");
             return;
         }
@@ -37,7 +37,8 @@ io.on("connection", (socket) => {
             rooms[code] = {
                 turnIndex: 0,
                 direction: 1,
-                startingCard: null
+                startingCard: null,
+                PIR: 0
             };
         }
         players[socket.id] = {
@@ -47,7 +48,7 @@ io.on("connection", (socket) => {
             amtofCards: 7,
             turn: false
         };
-
+        rooms[code].PIR++;
         io.to(code).emit(
             "UpdatePlayers",
             getPlayersInRoom(code)

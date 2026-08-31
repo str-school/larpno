@@ -79,6 +79,10 @@ const roomCode = sessionStorage.getItem("roomCode");
 
 const username = sessionStorage.getItem("username");
 
+if(roomCode == null){
+     window.location.href = "/index.html";
+}
+
 socket.emit("JoinRoom", username, roomCode);
 
 socket.on("JoinedRoom", (code) => {

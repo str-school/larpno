@@ -25,7 +25,10 @@ function getPlayersInRoom(code) {
 io.on("connection", (socket) => {
 
     socket.on("JoinRoom", (name, code) => {
-
+        if(rooms[code].players.length >= 3){
+              io.to(socket.id).emit("ReturnToLobby");
+            return;
+        }
 
         socket.join(code)
         console.log(code)

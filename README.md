@@ -11,5 +11,5 @@ run node server.js
 
 click this to go to the website
 ==============================
-            [LARPNO]([url](https://larpno.onrender.com/))
+            [LARPNO](https://larpno.onrender.com/))
 ==============================

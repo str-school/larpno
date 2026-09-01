@@ -10,4 +10,4 @@ run node server.js
 
 click this to go to the website
 ==============================
-            [LARPNO](https://larpno.onrender.com/)
+            [Larpno](https://larpno.onrender.com/)
